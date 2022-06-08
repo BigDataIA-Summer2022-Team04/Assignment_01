@@ -1,7 +1,9 @@
 DAMG7245_Assignment_01
 ==============================
 
-sky plane model implementation
+Sky Plane model implementation
+
+* Build profiling report of data using pandas-profiling, [data_analysis_pd.ipynb](notebooks/data_analysis_pd.ipynb)<br>
 
 Project Organization
 ------------
