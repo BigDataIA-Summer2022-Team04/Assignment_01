@@ -11,6 +11,16 @@ Renders HTML file of Expectations in clean, human-readable documentation contain
 * __Diverse Datasources and Store backends__ <br>
 Various datasources such Pandas dataframes, Spark dataframes, and SQL databases via SQLAlchemy.
 
+
+# Overview
+
+1. **Expectations suite json**
+    * [faa_registration](/great_expectations/expectations/faa_registration_suite.json)
+    * [planes_features](/great_expectations/expectations/planes_features_suite.json)
+2. **Data Docs html report**
+    * [faa_registration](/great_expectations/uncommitted/data_docs/local_site/expectations/faa_registration_suite.html)
+    * [planes_features](/great_expectations/uncommitted/data_docs/local_site/expectations/planes_features_suite.html)
+
 ---
 # Step 01: Environment Configuration
 
