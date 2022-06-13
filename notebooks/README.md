@@ -26,6 +26,8 @@ pip install -r requirements.txt
 1. [data_analysis_pd.ipynb](notebooks/data_analysis_pd.ipynb)<br>
    Dataset analysis using pandas-profiling, html reports generated at [reports](notebooks/reports) with names `csv_name_pd_report.html`
 
+2. [faa_registration_preprocessing.ipynb](notebooks/faa_registration_preprocessing.ipynb)<br>
+   Pre-Processing of faa_registration to be loaded in big query, Processed file can be found [here](data/processed) with names `{file_name}_{timestamp}.csv`
 
 # Error and Resolution
 |Sl no| File      | Error | Fix |
