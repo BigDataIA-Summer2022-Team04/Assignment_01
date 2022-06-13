@@ -1,0 +1,12 @@
+ID,NAME
+1,Glider
+2,Balloon
+3,Blimp/Dirigible
+4,Fixed wing single engine
+5,Fixed wing multi engine
+6,Rotorcraft
+7,Weight-shift-control
+8,Powered Parachute
+9,Gyroplane
+H,Hybrid Lift
+O,Other
