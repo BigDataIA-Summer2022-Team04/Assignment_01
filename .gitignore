@@ -154,3 +154,22 @@ cython_debug/
 # User defined
 .DS_STORE
 spyplane
+
+
+
+# great_expectations/
+
+# # /great_expectations/expectations/tmp
+# # great_expectations/expectations/.ge_store_backend_id
+
+# !/great_expectations/expectations/faa_registration_suite.json
+
+# great_expectations/plugins
+# great_expectations/profilers
+# great_expectations/uncommitted/
+# !great_expectations/uncommitted*.ipynb
+
+# # !/great_expectations/expectations/faa_registration_suite.json
+# # !/great_expectations/uncommitted/data_docs/local_site/expectations/faa_registration_suite.html
+# !/great_expectations/uncommitted/
+
