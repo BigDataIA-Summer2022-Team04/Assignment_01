@@ -14,3 +14,6 @@ pandas-profiling
 certifi
 ipywidgets
 great_expectations
+google-cloud-bigquery
+fastapi
+uvicorn
