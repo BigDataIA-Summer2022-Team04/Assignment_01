@@ -23,9 +23,10 @@ Various datasources such Pandas dataframes, Spark dataframes, and SQL databases 
     * [faa_registration](/great_expectations/uncommitted/data_docs/local_site/expectations/faa_registration_suite.html)
     * [planes_features](/great_expectations/uncommitted/data_docs/local_site/expectations/planes_features_suite.html)
 3. **Validation run report**
+    * [Home](/great_expectations/uncommitted/data_docs/local_site/index.html)
     * [faa_registration](/great_expectations/uncommitted/data_docs/local_site/validations/faa_registration_suite/20220611-035453-my-run-name-template/20220611T035453.307561Z/8832c98c74b764de338364367929a651.html)
-    * [planes_features](/great_expectations/uncommitted/data_docs/local_site/validations/planes_features_suite/20220613-021037-my-run-name-template/20220613T021037.820181Z/788cad9b74726cd166ca3dfa2306da3b.html)
-    
+    * [planes_features](/great_expectations/uncommitted/data_docs/local_site/validations/planes_features_suite/20220613-021700-my-run-name-template/20220613T021700.346960Z/788cad9b74726cd166ca3dfa2306da3b.html)
+
 ---
 # Step 01: Environment Configuration
 
