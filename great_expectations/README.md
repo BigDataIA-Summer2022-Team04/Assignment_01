@@ -11,9 +11,6 @@ Renders HTML file of Expectations in clean, human-readable documentation contain
 * __Diverse Datasources and Store backends__ <br>
 Various datasources such Pandas dataframes, Spark dataframes, and SQL databases via SQLAlchemy.
 
-
-
-
 # Overview
 
 1. **Expectations suite json**
