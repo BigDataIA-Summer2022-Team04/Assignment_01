@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from google.cloud import bigquery
 
 app = FastAPI()
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'API/plane-detection-352701-90220d8b4de6.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"C:\Users\abhij\Downloads\plane-detection-352701-90220d8b4de6.json"
 
 
 def query():
@@ -51,7 +51,7 @@ def test_dynamic(row_counts: int):
 
 
 def main():
-    return
+    query()
 
 
 if __name__ == "__main__":
