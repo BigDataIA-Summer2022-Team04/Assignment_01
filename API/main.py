@@ -49,9 +49,28 @@ def test_dynamic(row_counts: int):
     for row in results:
         print(f"{row}")
 
+def query1(year: int):
+    client = bigquery.Client()
+    queryyears = client.query(f"""SELECT extract(year from a.year_mfr) FROM `plane-detection-352701.SPY_PLANE.FAA_REGISTRATION-2022-06-13T00_09_43` a
+    left join `plane-detection-352701.SPY_PLANE.TRAIN` b on a.MODE_S_CODE_HEX=b.ADSHEX
+    where b.class = 'surveil' and extract(year from a.year_mfr) is not Null""")
+    resultyear = queryyears.result()
+    years=[]
+    for mfgyear in resultyear:
+        years.append(mfgyear[0])
+    if year in years:
+        query_job = client.query(f"""SELECT * FROM `plane-detection-352701.SPY_PLANE.FAA_REGISTRATION-2022-06-13T00_09_43` a
+        left join `plane-detection-352701.SPY_PLANE.TRAIN` b on a.MODE_S_CODE_HEX=b.ADSHEX
+        where b.class = 'surveil' and extract(year from a.year_mfr)={year}""")
+        results = query_job.result()
+        for row in results:
+            print(row)
+    else:
+         print('No surrveilance planes were manufactured in the year provided please select from the following years ', years)
+
 
 def main():
-    query()
+    query1(2010)
 
 
 if __name__ == "__main__":
