@@ -155,7 +155,7 @@ cython_debug/
 .DS_STORE
 spyplane
 API/plane-detection-352701-*.json
-
+!API/.env
 
 # great_expectations/
 
