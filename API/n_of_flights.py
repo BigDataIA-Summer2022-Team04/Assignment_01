@@ -124,5 +124,5 @@ def main(quan: int,flights: int):
     exit_script()
 
 if __name__ == "__main__":
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"C:\Users\abhij\Downloads\plane-detection-352701-90220d8b4de6.json"
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.getenv('BQ_KEY_JSON')
     main()
