@@ -116,7 +116,7 @@ def exit_script(error_code: int = 0):
     logging.info(f"Script Ends")
     exit(error_code)
 
-def main(quan: int,flights: int):
+def main(quan: int= 1,flights: int=1):
     data = noofflights(quan, flights)
     if data in (101,102,103,104):
         exit_script(data)

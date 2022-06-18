@@ -152,7 +152,7 @@ def exit_script(error_code: int = 0):
     logging.info(f"Script Ends")
     exit(error_code)
 
-def main( n : int, year : int):
+def main( n : int = 1, year : int = 1991):
     data = queries(n, year)
     if data in (101,102,103,104,105,106):
         exit_script(data)

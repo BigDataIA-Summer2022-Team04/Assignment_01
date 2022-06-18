@@ -88,7 +88,7 @@ def exit_script(error_code: int = 0):
     logging.info(f"Script Ends")
     exit(error_code)
 
-def main(type:int):
+def main(type:int = 1):
     data = typengine(type)
     if data in (101,102,104):
         exit_script(data)
