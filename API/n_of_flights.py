@@ -32,12 +32,13 @@ logging.basicConfig(
 # 103 - Invalid User input years/ no rows returned because out of range of years.
 # 104 - Invalid SQL query
 #################################################
-"""Takes n and mfgyear as input to give registration details of planes manufactured in the entered year, 
-The value of n specifies whether the data required is for surveillance or non surveillance planes 
-n=0 means data for surveillance planes and n=1 indicates data for non surveillance planes.
+"""Takes quan and flights as input to give the records of plane models and types of planes along with number of times data has been collected of the planes taking a flight.
 ----------
-year : int
-    the manufactured year
+quan : int
+    indicates less than or more than
+    0 indicates less than and 1 indicates more than
+flights : int
+    this returns the records with plane models which have taken more or less than the specified flights.
 Returns
 -------
 json
