@@ -6,6 +6,7 @@ from status_code import status_code
 from type_engine import type_engine
 from type_registrant import type_registrant
 from type_aircraft import type_aircraft
+from hist_plot_count_year import hist_plot
 
 #################################################
 # Author: Piyush
@@ -82,3 +83,12 @@ def test_incorrect_state_name_type_registrant():
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.getenv('BQ_KEY_JSON')
     returns = type_registrant('MA')
     assert len(returns) == 2
+
+# File path test case
+def test_incorrect_file_path_hist_plot():
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.getenv('BQ_KEY_JSON')
+    assert hist_plot('~/invalid/path') == 102
+
+def test_incorrect_json_file_hist_plot():
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.getenv('BQ_KEY_JSON_INVALID')
+    assert hist_plot('/Users/piyush/Downloads') == 101

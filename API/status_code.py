@@ -77,7 +77,7 @@ def status_code(state_short: str):
 
         SELECT 
         t.N_NUMBER,
-        t.SERIAL_NUMBER
+        t.SERIAL_NUMBER,
         t.STATE,
         re.NAME as STATUS_COD
         FROM faa AS t
@@ -118,7 +118,7 @@ def exit_script(error_code: int = 0):
     exit(error_code)
 
 
-def main(state_code: str = 'MA'):
+def main(state_code: str = 'MAA'):
     logging.info(f"Script Starts")
     data = status_code(state_code)
     if data in(101,102,103,104):
