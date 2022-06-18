@@ -4,13 +4,14 @@ import json
 import logging
 from dotenv import load_dotenv
 from fastapi import FastAPI
+import pandas as pd
 
 #Enable logging
 load_dotenv()
 LOGLEVEL = os.environ.get('LOGLEVEL', 'INFO').upper()
 logging.basicConfig(
     format='%(asctime)s %(levelname)-8s %(message)s',
-    level=LOGLEVEL,
+    level='DEBUG',
     datefmt='%Y-%m-%d %H:%M:%S')
 
 
@@ -25,24 +26,27 @@ logging.basicConfig(
 #################################################
 # Exit Codes:
 # 101 - Cannot connect to Big Query Server
-# 102 - Invalid User input
-# 103 - No rows returned from big query
+# 102 - Invalid User input n
+# 103 - Invalid User input years
 # 104 - Invalid SQL query
 #################################################
 
 
 def queries( n : int, year : int):
 
-    """Gets and returns the aggregate statistics's of flights and records
-    Parameters
+    """Takes n and mfgyear as input to give registration details of planes manufactured in the entered year, 
+    The value of n specifies whether the data required is for surveillance or non surveillance planes 
+    n=0 means data for surveillance planes and n=1 indicates data for non surveillance planes.
     ----------
-    state_short : str
-        The short two-letter state and territory abbreviations
+    year : int
+        the manufactured year
     Returns
     -------
     json
-        1. Aggregate of count of planes based on status code
-        2. Records of flight number, serial number, state name, status"""
+        1.  Records of flight registration details
+        2.  if entered year doesn't return any value or data related to that year does not exists the merely prints the years of which data is available from
+            which the user can choose and enter appropriately.
+        """
 
 
     logging.info(f"Script Starts")
@@ -75,6 +79,7 @@ def queries( n : int, year : int):
                     where b.class = 'surveil' and extract(year from a.year_mfr)={year}""").to_dataframe()
                 except Exception as e:
                     logging.error(f"Bad SQL Query, verify SQL for fetching surveillance data")
+                    return 104
 
                 if df.empty:
                     logging.error(f"No rows returned from big query")
@@ -88,7 +93,7 @@ def queries( n : int, year : int):
                 return  parsed_records
             else:
                 print('No non surrveilance planes were manufactured in the year provided please select from the following years ', years)
-                return 105
+                return 103
 
         else:
             try:
@@ -115,14 +120,16 @@ def queries( n : int, year : int):
                     client = bigquery.Client()
                     logging.info(f"Connection established to Big Query Server")
                 except Exception as e:
-                    logging.error(f"Bad SQL Query, verify SQL for fetching surveillance data")
+                    logging.error(f"Check the path of the JSON file and contents")
+                    return 101
+                df = pd.DataFrame()
 
                 try:
                     df = client.query(f"""SELECT * FROM `plane-detection-352701.SPY_PLANE.FAA_REGISTRATION-2022-06-13T00_09_43` a
                     left join `plane-detection-352701.SPY_PLANE.TRAIN` b on a.MODE_S_CODE_HEX=b.ADSHEX
-                    where b.class != 'surveil' and extract(year from a.year_mfr)={year}""").to_dataframe()
+                    where b.class != 'surveil' and extract(year from a.year_mfr)={year} limit 4""").to_dataframe()
                 except Exception as e:
-                    logging.error(f"Bad SQL Query, verify SQL for fetching surveillance data")
+                    logging.error(f"Bad SQL Query, verify SQL for fetching non surveillance planes data")
 
                 if df.empty:
                     logging.error(f"No rows returned from big query")
@@ -136,23 +143,23 @@ def queries( n : int, year : int):
                 return  parsed_records
             else:
                 print('No non surrveilance planes were manufactured in the year provided please select from the following years ', years)
-                return 105
+                return 103
     else:
         print('please enter 0 for surveillance plane details or 1 for non-surveillance')
-        return 106
+        return 102
 
 def exit_script(error_code: int = 0):
     logging.info(f"Script Ends")
     exit(error_code)
 
 def main( n : int, year : int):
-    data = queries( n , year)
+    data = queries(n, year)
     if data in (101,102,103,104,105,106):
         exit_script(data)
     logging.debug("############## Printing Records          ##############")
-    logging.debug(json.dumps(data[1][:5], indent=4, sort_keys=True))
+    logging.debug(json.dumps(data[:4], indent=4, sort_keys=True))
     exit_script()
 
 if __name__ == "__main__":
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"C:\Users\abhij\Downloads\plane-detection-352701-90220d8b4de6.json"
-    main(0,2000)
+    main()
