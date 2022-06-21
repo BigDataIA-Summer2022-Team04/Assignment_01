@@ -118,7 +118,7 @@ def exit_script(error_code: int = 0):
     exit(error_code)
 
 
-def main(state_code: str = 'MA'):
+def main(state_code: str = 'MAA'):
     logging.info(f"Script Starts")
     data = status_code(state_code)
     if data in(101,102,103,104):
